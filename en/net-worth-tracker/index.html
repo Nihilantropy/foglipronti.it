@@ -1,0 +1,132 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Net Worth Tracker Spreadsheet Google Sheets &amp; Excel | FogliPronti</title><meta name="description" content="Net Worth Tracker Spreadsheet for Google Sheets and Excel: type your balances once a month and see what you own, what you owe, and how your net worth changes."><link rel="canonical" href="https://foglipronti.it/en/net-worth-tracker/">
+<meta property="og:title" content="Net Worth Tracker Spreadsheet Google Sheets &amp; Excel | FogliPronti"><meta property="og:description" content="Net Worth Tracker Spreadsheet for Google Sheets and Excel: type your balances once a month and see what you own, what you owe, and how your net worth changes."><meta property="og:url" content="https://foglipronti.it/en/net-worth-tracker/">
+<meta property="og:site_name" content="FogliPronti"><meta property="og:locale" content="en_US"><meta property="og:image" content="https://foglipronti.it/en/img/net-worth-tracker/foto1-1200.webp"><meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="/logo.png"><link rel="preload" href="/fonts/Fraunces-SemiBold.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/Inter-Regular.woff2" as="font" type="font/woff2" crossorigin>
+<style>
+@font-face{font-family:Fraunces;src:url(/fonts/Fraunces-SemiBold.woff2) format("woff2");font-weight:600;font-display:swap}
+@font-face{font-family:Inter;src:url(/fonts/Inter-Regular.woff2) format("woff2");font-weight:400;font-display:swap}
+@font-face{font-family:Inter;src:url(/fonts/Inter-SemiBold.woff2) format("woff2");font-weight:600;font-display:swap}
+:root{--viola:#5B4B8A;--viola-scuro:#463972;--lavanda:#EEEAF8;--salvia:#8FB9A8;--salvia-chiara:#E3F0EA;--blush:#F4C7C3;
+--crema:#FBF8F3;--ink:#2E2A3B;--grigio:#6B6577;--linea:#E2DCEB;color-scheme:light}
+*{box-sizing:border-box}
+body{margin:0;font:400 1.0625rem/1.6 Inter,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;color:var(--ink);background:var(--crema);overflow-wrap:break-word}
+img{max-width:100%;height:auto;display:block}
+a{color:var(--viola)}
+h1,h2,h3{font-family:Fraunces,Georgia,"Times New Roman",serif;font-weight:600;line-height:1.15;letter-spacing:-.01em;text-wrap:balance;margin:0}
+.w{max-width:1160px;margin:0 auto;padding-inline:20px}
+.top{border-bottom:1px solid var(--linea);background:var(--crema)}
+.top .w{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:6px 24px;min-height:64px;padding-block:10px}
+.logo{font-family:Fraunces,Georgia,serif;font-weight:600;font-size:1.35rem;color:var(--ink);text-decoration:none}
+.top nav{display:flex;flex-wrap:wrap;gap:4px 20px;font-size:.95rem}
+.top nav a{color:var(--ink);text-decoration:none;padding:6px 0}
+.top nav a:hover{color:var(--viola);text-decoration:underline}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:.5em;background:var(--viola);color:#fff;font-weight:600;font-size:1.0625rem;
+padding:15px 30px;border-radius:999px;text-decoration:none;white-space:nowrap;box-shadow:0 6px 16px -8px rgba(70,57,114,.55);transition:background .2s,transform .2s}
+.btn:hover{background:var(--viola-scuro)}.btn:active{transform:translateY(1px)}
+.btn.chiaro{background:#fff;color:var(--viola);box-shadow:none;border:1.5px solid var(--viola)}
+a:focus-visible,summary:focus-visible{outline:3px solid var(--salvia);outline-offset:3px;border-radius:6px}
+.p{color:var(--grigio)}
+/* home */
+.hero{padding-block:56px 40px;display:grid;grid-template-columns:1.1fr 1fr;gap:48px;align-items:center}
+.hero h1{font-size:clamp(2.2rem,4.4vw,3.6rem);max-width:15ch}
+.hero p{font-size:1.2rem;max-width:44ch;margin:20px 0 0;color:var(--grigio)}
+.vie{display:grid;gap:12px}
+.via{display:grid;grid-template-columns:132px 1fr auto;align-items:center;gap:18px;background:#fff;border:1px solid var(--linea);border-radius:16px;
+padding:10px 20px 10px 10px;text-decoration:none;color:var(--ink);transition:border-color .2s,transform .2s}
+.via:hover{border-color:var(--salvia);transform:translateX(3px)}
+.via img{border-radius:10px;width:132px;aspect-ratio:5/4;object-fit:cover}
+.via b{font-family:Fraunces,Georgia,serif;font-weight:600;font-size:1.25rem;display:block;color:var(--ink)}
+.via span{font-size:.92rem;color:var(--grigio)}.via i{font-style:normal;font-size:1.4rem;color:var(--viola)}
+.cat{padding-block:44px 8px;border-top:1px solid var(--linea)}
+.cat h2{font-size:clamp(1.7rem,3vw,2.3rem)}
+.cat>.w>p{margin:8px 0 24px;color:var(--grigio)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:22px}
+.card{display:flex;flex-direction:column;background:#fff;border:1px solid var(--linea);border-radius:16px;overflow:hidden;text-decoration:none;color:var(--ink);
+transition:box-shadow .25s,transform .25s}
+.card:hover{transform:translateY(-3px);box-shadow:0 14px 30px -18px rgba(70,57,114,.45)}
+.card img{aspect-ratio:5/4;width:100%;object-fit:cover;background:var(--lavanda)}
+.card .b{padding:16px 18px 18px;display:flex;flex-direction:column;gap:8px;flex:1}
+.card h3{font-size:1.2rem}
+.card .d{font-size:.93rem;color:var(--grigio);display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;margin:0}
+.card .prezzo{margin-top:auto;padding-top:6px;display:flex;justify-content:space-between;align-items:baseline;font-size:.95rem}
+.card .prezzo strong{font-size:1.05rem}.card .prezzo span{color:var(--viola);font-weight:600}
+.chiusa{margin-block:56px 0;padding-block:40px;background:var(--salvia-chiara)}
+.chiusa .w{display:flex;flex-wrap:wrap;gap:16px 32px;align-items:center;justify-content:space-between}
+.chiusa h2{font-size:1.6rem}
+/* prodotto */
+.briciole{font-size:.9rem;color:var(--grigio);padding-block:18px 0}.briciole a{color:var(--grigio)}
+.prod{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);grid-template-areas:"img titolo" "img compra" "img lede" "img .";
+grid-template-rows:auto auto auto 1fr;column-gap:52px;padding-block:20px 40px}
+.prod .titolo{grid-area:titolo}.prod .foto{grid-area:img}.prod .compra{grid-area:compra}.prod .lede{grid-area:lede}
+.prod h1{font-size:clamp(2rem,3.6vw,3rem)}
+.foto img{border-radius:16px;border:1px solid var(--linea);background:#fff}
+.compra{margin-top:22px;padding:22px;background:#fff;border:1px solid var(--linea);border-radius:16px}
+.compra .cifra{font-size:1.05rem;margin:0 0 14px}.compra .cifra strong{font-size:1.6rem;font-family:Fraunces,Georgia,serif}
+.compra .btn{width:100%}
+.compra ul{list-style:none;padding:0;margin:16px 0 0;display:flex;flex-wrap:wrap;gap:8px}
+.compra li{background:var(--salvia-chiara);color:#2C5244;font-size:.85rem;font-weight:600;padding:5px 12px;border-radius:999px}
+.compra small{display:block;margin-top:12px;color:var(--grigio);font-size:.82rem}
+.lede{font-size:1.1rem;margin:22px 0 0;max-width:60ch}
+.sez{padding-block:44px;border-top:1px solid var(--linea)}
+.sez h2{font-size:clamp(1.6rem,2.8vw,2.1rem);margin-bottom:20px}
+.storia p{max-width:62ch;font-size:1.1rem;margin:0 0 14px}
+.galleria{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
+.galleria img{border-radius:14px;border:1px solid var(--linea);background:#fff;width:100%}
+.dentro{max-width:72ch}.dentro h3{font-size:1.25rem;margin:30px 0 10px}.dentro h3:first-child{margin-top:0}
+.dentro ul,.dentro ol{padding-left:1.3em;margin:0}.dentro li{margin:6px 0}.dentro li::marker{color:var(--salvia)}.dentro p{margin:10px 0}
+.faq{max-width:72ch}
+.faq details{border-bottom:1px solid var(--linea);padding:4px 0}
+.faq summary{cursor:pointer;font-weight:600;padding:14px 0;list-style-position:outside}
+.faq details p{margin:0 0 16px;color:var(--grigio)}
+.fondo{padding-block:36px;text-align:center}
+footer{border-top:1px solid var(--linea);padding-block:28px 40px;font-size:.88rem;color:var(--grigio)}
+footer .w{display:flex;flex-wrap:wrap;gap:8px 24px;justify-content:space-between}footer a{color:var(--grigio)}
+@media(max-width:860px){
+.hero{grid-template-columns:1fr;gap:28px;padding-block:32px 28px}
+.prod{grid-template-columns:minmax(0,1fr);grid-template-areas:"titolo" "img" "compra" "lede";grid-template-rows:auto;padding-block:12px 28px}
+.prod .foto{margin-top:18px}.galleria{grid-template-columns:minmax(0,1fr)}}
+@media(max-width:480px){.via{grid-template-columns:96px 1fr auto;gap:14px}.via img{width:96px}.w{padding-inline:16px}.btn{padding:15px 22px}}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+</style><script type="application/ld+json">{"@context": "https://schema.org", "@type": "Product", "name": "Net Worth Tracker Spreadsheet Google Sheets & Excel", "description": "Net Worth Tracker Spreadsheet for Google Sheets and Excel: type your balances once a month and see what you own, what you owe, and how your net worth changes.", "image": ["https://foglipronti.it/en/img/net-worth-tracker/foto1-1200.webp", "https://foglipronti.it/en/img/net-worth-tracker/foto2-1200.webp", "https://foglipronti.it/en/img/net-worth-tracker/foto3-1200.webp", "https://foglipronti.it/en/img/net-worth-tracker/foto4-1200.webp", "https://foglipronti.it/en/img/net-worth-tracker/foto5-1200.webp", "https://foglipronti.it/en/img/net-worth-tracker/foto6-1200.webp", "https://foglipronti.it/en/img/net-worth-tracker/foto7-1200.webp"], "brand": {"@type": "Brand", "name": "FogliPronti"}, "url": "https://foglipronti.it/en/net-worth-tracker/", "offers": {"@type": "Offer", "price": "7.90", "priceCurrency": "EUR", "availability": "https://schema.org/InStock", "url": "https://www.etsy.com/listing/4598526689"}}</script></head><body>
+<header class="top"><div class="w"><a class="logo" href="/en/">FogliPronti</a><nav aria-label="Main"><a href="/en/#budget">Budget</a><a href="/en/#adhd">ADHD</a><a href="/en/#dog-breeder-forms">Dog breeders</a><a href="https://foglipronti.etsy.com" rel="noopener">Etsy shop</a><a href="/" hreflang="it" lang="it">Italiano</a></nav></div></header>
+<main><div class="w"><nav class="briciole" aria-label="Breadcrumb"><a href="/en/">Home</a> / <a href="/en/#budget">Budget spreadsheets</a></nav>
+<div class="prod"><h1 class="titolo">Net Worth Tracker Spreadsheet Google Sheets &amp; Excel</h1>
+<div class="foto"><img src="/en/img/net-worth-tracker/foto1-1200.webp" srcset="/en/img/net-worth-tracker/foto1-600.webp 600w, /en/img/net-worth-tracker/foto1-1200.webp 1200w" sizes="(min-width: 1160px) 600px, (min-width: 860px) 52vw, 92vw" width="1200" height="960" alt="Net Worth Tracker Spreadsheet Google Sheets &amp; Excel" fetchpriority="high" decoding="async"></div>
+<div class="compra"><p class="cifra"><strong>About $9</strong> on Etsy</p><a class="btn" href="https://www.etsy.com/listing/4598526689" rel="noopener">Get it on Etsy <span aria-hidden="true">&rarr;</span></a>
+<ul><li>Excel & Google Sheets</li><li>Instant download</li></ul><small>Price in US dollars is approximate: Etsy shows the exact price in your currency at checkout.</small></div>
+<p class="lede">Net Worth Tracker Spreadsheet for Google Sheets and Excel: type your balances once a month and see what you own, what you owe, and how your net worth changes.</p></div></div>
+<section class="sez"><div class="w"><h2>See inside</h2><ul class="galleria" style="list-style:none;padding:0;margin:0"><li><img src="/en/img/net-worth-tracker/foto2-1200.webp" srcset="/en/img/net-worth-tracker/foto2-600.webp 600w, /en/img/net-worth-tracker/foto2-1200.webp 1200w" sizes="(min-width: 1160px) 560px, (min-width: 860px) 46vw, 92vw" width="1200" height="960" alt="Net Worth Tracker Spreadsheet Google Sheets &amp; Excel, image 2" loading="lazy" decoding="async"></li><li><img src="/en/img/net-worth-tracker/foto3-1200.webp" srcset="/en/img/net-worth-tracker/foto3-600.webp 600w, /en/img/net-worth-tracker/foto3-1200.webp 1200w" sizes="(min-width: 1160px) 560px, (min-width: 860px) 46vw, 92vw" width="1200" height="960" alt="Net Worth Tracker Spreadsheet Google Sheets &amp; Excel, image 3" loading="lazy" decoding="async"></li><li><img src="/en/img/net-worth-tracker/foto4-1200.webp" srcset="/en/img/net-worth-tracker/foto4-600.webp 600w, /en/img/net-worth-tracker/foto4-1200.webp 1200w" sizes="(min-width: 1160px) 560px, (min-width: 860px) 46vw, 92vw" width="1200" height="960" alt="Net Worth Tracker Spreadsheet Google Sheets &amp; Excel, image 4" loading="lazy" decoding="async"></li><li><img src="/en/img/net-worth-tracker/foto5-1200.webp" srcset="/en/img/net-worth-tracker/foto5-600.webp 600w, /en/img/net-worth-tracker/foto5-1200.webp 1200w" sizes="(min-width: 1160px) 560px, (min-width: 860px) 46vw, 92vw" width="1200" height="960" alt="Net Worth Tracker Spreadsheet Google Sheets &amp; Excel, image 5" loading="lazy" decoding="async"></li><li><img src="/en/img/net-worth-tracker/foto6-1200.webp" srcset="/en/img/net-worth-tracker/foto6-600.webp 600w, /en/img/net-worth-tracker/foto6-1200.webp 1200w" sizes="(min-width: 1160px) 560px, (min-width: 860px) 46vw, 92vw" width="1200" height="960" alt="Net Worth Tracker Spreadsheet Google Sheets &amp; Excel, image 6" loading="lazy" decoding="async"></li><li><img src="/en/img/net-worth-tracker/foto7-1200.webp" srcset="/en/img/net-worth-tracker/foto7-600.webp 600w, /en/img/net-worth-tracker/foto7-1200.webp 1200w" sizes="(min-width: 1160px) 560px, (min-width: 860px) 46vw, 92vw" width="1200" height="960" alt="Net Worth Tracker Spreadsheet Google Sheets &amp; Excel, image 7" loading="lazy" decoding="async"></li></ul></div></section>
+<section class="sez"><div class="w"><div class="dentro"><h2>What you get</h2><p>I got tired of guessing whether I was getting ahead. My accounts lived in five different apps, and none of them added up the whole picture. So I built one sheet: you list your accounts once, type each balance on the same day every month, and the totals, the change since last month, the mix of assets and debts and the charts fill in by themselves. It takes about five minutes a month.</p>
+<h3>What&#x27;s inside (6 tabs)</h3>
+<ul>
+<li>Start here: setup in 5 steps, how to open it in Google Sheets</li>
+<li>Setup: currency ($, €, £, CA$, A$), starting month and year, 24 or 36 months, an optional net worth goal and target date, and your account list: up to 25 assets (Cash, Investments, Retirement, Property, Vehicle, Other) and up to 20 debts (Mortgage, Student loan, Car loan, Credit card, Other). Rename the types if you like</li>
+<li>Balances: one row per account, one column per month, so you type each balance once</li>
+<li>Summary: month by month, total assets, total liabilities, net worth, change vs last month, % change, assets by type, debt by type and your debt-to-asset ratio</li>
+<li>Goal: progress toward your goal, average monthly change, months to goal at your current pace and the amount you&#x27;d need per month to hit your target date</li>
+<li>Dashboard: your latest numbers plus 4 charts: net worth over time, assets vs liabilities, asset mix (donut) and debt mix (donut)</li>
+</ul>
+<h3>How it works</h3>
+<ol>
+<li>In Setup, pick your currency and starting month and list your assets and debts, each with a type from the drop-down.</li>
+<li>Once a month, type what each account is worth or what you owe on the Balances tab. Leave future months empty.</li>
+<li>Open the Summary, Goal and Dashboard tabs. The totals, the pace and the charts are already there.</li>
+</ol>
+<h3>Colors and files</h3>
+<p>You get 4 files: the same tracker in 3 color themes (Lavender, Blush, Sage), ready to use and empty, plus one EXAMPLE file with 36 months of sample numbers so you can see every feature at work.</p>
+<h3>Compatibility</h3>
+<ul>
+<li>.xlsx for Microsoft Excel 2016 or newer (Windows, Mac, Excel online) and Google Sheets (free Google account: upload and open, steps in the file); also opens in LibreOffice</li>
+<li>No macros, no add-ons, no subscription</li>
+<li>Formulas are locked so you can&#x27;t break them by accident; your cells are shaded</li>
+</ul>
+<h3>Please note</h3>
+<p>Digital download: nothing is shipped. The photos show the example file. For personal tracking, not financial advice. Home and car values are your own estimates. For personal use, please don&#x27;t resell or share the file.</p>
+<p>Made with the help of AI tools and checked by hand.</p></div></div></section>
+<section class="sez"><div class="w"><div class="faq"><h2>Questions</h2><details><summary>How do I get the files?</summary><p>Right after you buy, Etsy shows a download button and emails you a link. You can download the files again any time from Purchases and reviews in your Etsy account.</p></details><details><summary>Is anything shipped?</summary><p>No. This is a digital download, nothing is mailed to you.</p></details><details><summary>Which files are in the download?</summary><p>Net-Worth-Tracker-Lavender.xlsx, Net-Worth-Tracker-Blush.xlsx, Net-Worth-Tracker-Sage.xlsx, Net-Worth-Tracker-EXAMPLE.xlsx.</p></details><details><summary>Does it work in Google Sheets?</summary><p>Yes. Open the .xlsx file in Excel, or upload it to Google Drive and open it with Google Sheets (File, Import also works).</p></details></div></div></section>
+<div class="fondo"><a class="btn" href="https://www.etsy.com/listing/4598526689" rel="noopener">Get it on Etsy <span aria-hidden="true">&rarr;</span></a></div></main>
+<footer><div class="w"><span>FogliPronti: printable forms, planners and spreadsheets, sold on <a href="https://foglipronti.etsy.com" rel="noopener">Etsy</a>.</span>
+<span>Record-keeping and planning tools, not medical, veterinary or financial advice. Questions: info@foglipronti.it</span></div></footer>
+</body></html>
